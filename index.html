@@ -137,14 +137,14 @@ h3 { color:var(--teal); margin:12px 0 6px; }
 <p class="parent">Start with Bismillah. Do 1 page a day. Praise effort, not just correct answers. Let your child trace with finger first, then pencil..</p>
 <h3>What's Inside?</h3>
 <div class="checklist">
-✅ <b>1.</b> Bismillah & My Dua<br>
-✅ <b>2.</b> Find the Words! - Word Search<br>
-✅ <b>3.</b> Mini Crossword<br>
-✅ <b>4.</b> Help the Little Camel! - Maze<br>
-✅ <b>5.</b> Match the Arabic Letter<br>
-✅ <b>6.</b> Trace & Color<br>
-✅ <b>7.</b> My Colouring Page - with Pencils! <br>
-✅ <b>8.</b> Answer Key + My Certificate
+<b>1.</b> Bismillah & My Dua<br>
+ <b>2.</b> Find the Words! - Word Search<br>
+<b>3.</b> Mini Crossword<br>
+ <b>4.</b> Help the Little Camel! - Maze<br>
+ <b>5.</b> Match the Arabic Letter<br>
+<b>6.</b> Trace & Color<br>
+ <b>7.</b> My Colouring Page - with Pencils! <br>
+ <b>8.</b> Answer Key + My Certificate
 </div>
 <div class="pill">My Progress</div>
 <div class="progress"><div id="progressBar"></div></div>
@@ -291,43 +291,75 @@ h3 { color:var(--teal); margin:12px 0 6px; }
   <label style="font-size:11pt;">🎨 <input type="color" id="customPencil" value="#d6a84d" onchange="pickCustomPencil(this.value)"> My Colour</label>
 </div>
 
-<!-- COLOURING PICTURE -->
+<!-- COLOURING PICTURE - CLEAN MASJID LIKE INSPO -->
 <div class="colour-stage">
-<svg id="colourSvg" viewBox="0 0 700 440" xmlns="http://www.w3.org/2000/svg">
-  <rect class="paint" data-name="Sky" x="0" y="0" width="700" height="440" rx="10" fill="#fffdf1"/>
-  <path class="paint" data-name="Star" d="M120 60 l10 22 22 10 -22 10 -10 22 -10 -22 -22 -10 22 -10 Z" fill="#ffffff"/>
-  <path class="paint" data-name="Star" d="M560 55 l10 22 22 10 -22 10 -10 22 -10 -22 -22 -10 22 -10 Z" fill="#ffffff"/>
-  <path class="paint" data-name="Moon - Qamar" d="M350 40 A65 65 0 1 0 350 170 A52 52 0 1 1 350 40 Z" fill="#ffffff"/>
-  <ellipse class="paint" data-name="Cloud" cx="150" cy="210" rx="50" ry="18" fill="#ffffff"/>
-  <ellipse class="paint" data-name="Cloud" cx="560" cy="210" rx="50" ry="18" fill="#ffffff"/>
-  <rect class="paint" data-name="Ground" x="0" y="360" width="700" height="80" rx="10" fill="#E8DCC8"/>
-  <rect class="paint" data-name="Masjid Wall" x="180" y="250" width="340" height="110" rx="8" fill="#ffffff"/>
-  <path class="paint" data-name="Masjid Dome" d="M265 250 Q350 140 435 250 Z" fill="#ffffff"/>
-  <rect class="paint" data-name="Dome Top" x="344" y="125" width="12" height="30" fill="#ffffff"/>
-  <circle class="paint" data-name="Crescent" cx="350" cy="120" r="9" fill="#ffffff"/>
-  <rect class="paint" data-name="Minaret Left" x="150" y="185" width="30" height="175" rx="6" fill="#ffffff"/>
-  <path class="paint" data-name="Minaret Roof Left" d="M146 185 L165 145 L184 185 Z" fill="#ffffff"/>
-  <rect class="paint" data-name="Minaret Right" x="520" y="185" width="30" height="175" rx="6" fill="#ffffff"/>
-  <path class="paint" data-name="Minaret Roof Right" d="M516 185 L535 145 L554 185 Z" fill="#ffffff"/>
-  <path class="paint" data-name="Masjid Door" d="M315 360 L315 305 Q350 280 385 305 L385 360 Z" fill="#ffffff"/>
-  <rect class="paint" data-name="Window Left" x="210" y="295" width="50" height="45" rx="10" fill="#ffffff"/>
-  <rect class="paint" data-name="Window Right" x="440" y="295" width="50" height="45" rx="10" fill="#ffffff"/>
-  <circle class="paint" data-name="Flower" cx="90" cy="385" r="14" fill="#ffffff"/>
-  <circle class="paint" data-name="Flower" cx="620" cy="385" r="14" fill="#ffffff"/>
-  <ellipse class="paint" data-name="Camel Body" cx="530" cy="330" rx="52" ry="24" fill="#ffffff"/>
-  <ellipse class="paint" data-name="Camel Hump" cx="530" cy="305" rx="24" ry="15" fill="#ffffff"/>
-  <circle class="paint" data-name="Camel Head" cx="595" cy="290" r="18" fill="#ffffff"/>
-  <rect class="paint" data-name="Camel Neck" x="572" y="290" width="28" height="20" rx="7" fill="#ffffff"/>
-  <rect class="paint" data-name="Camel Leg 1" x="495" y="350" width="9" height="28" rx="4" fill="#ffffff"/>
-  <rect class="paint" data-name="Camel Leg 2" x="550" y="350" width="9" height="28" rx="4" fill="#ffffff"/>
-  <rect class="paint" data-name="Camel Blanket" x="500" y="318" width="48" height="18" rx="7" fill="#ffffff"/>
-  <ellipse class="paint" data-name="Bee Body" cx="120" cy="270" rx="20" ry="12" fill="#ffffff"/>
-  <ellipse class="paint" data-name="Bee Wing" cx="115" cy="252" rx="12" ry="7" fill="#ffffff"/>
-  <text x="350" y="425" text-anchor="middle" font-size="15" fill="#876c64">Colour with love • Bismillah • Alhamdulillah</text>
+<svg viewBox="0 0 700 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Masjid colouring">
+  
+  <!-- Sky -->
+  <path class="paint" data-name="Sky" d="M0 0 H700 V340 Q550 310 350 315 Q150 310 0 340 Z" fill="#ffffff" stroke="#111" stroke-width="3"/>
+  <path class="paint" data-name="Crescent" d="M365 20 A38 38 0 1 0 405 75 A30 30 0 1 1 365 20 Z" fill="#ffffff" stroke="#111" stroke-width="3" stroke-linejoin="round"/>
+  <path class="paint" data-name="Star" d="M365 60 L368 68 L376 68 L370 73 L372 81 L365 76 L358 81 L360 73 L354 68 L362 68 Z" fill="#ffffff" stroke="#111" stroke-width="2"/>
+
+  <!-- Ground -->
+  <path class="paint" data-name="Ground" d="M0 340 Q180 310 350 315 Q520 310 700 340 V460 H0 Z" fill="#ffffff" stroke="#111" stroke-width="3"/>
+
+  <!-- Left Minaret - tall, thin, pointed like inspo -->
+  <path class="paint" data-name="Minaret" d="M175 145 L190 55 L205 145 Z" fill="#ffffff" stroke="#111" stroke-width="3" stroke-linejoin="round"/>
+  <rect class="paint" data-name="Minaret Balcony" x="168" y="145" width="44" height="18" rx="3" fill="#ffffff" stroke="#111" stroke-width="3"/>
+  <rect class="paint" data-name="Minaret Shaft" x="178" y="163" width="24" height="45" fill="#ffffff" stroke="#111" stroke-width="3"/>
+  <path class="paint" data-name="Minaret Tower" d="M168 208 H212 L212 380 L168 380 Z" fill="#ffffff" stroke="#111" stroke-width="3"/>
+  <path d="M172 222 H208" stroke="#111" stroke-width="2"/>
+  <path d="M180 230 V238 M190 230 V238 M200 230 V238" stroke="#111" stroke-width="2"/>
+
+  <!-- Left Small Dome -->
+  <path class="paint" data-name="Left Dome" d="M215 260 C215 210 245 195 265 195 C285 195 315 210 315 260 Z" fill="#ffffff" stroke="#111" stroke-width="3"/>
+  <path d="M240 200 C235 220 235 240 240 258 M265 195 C260 220 260 240 265 258 M290 200 C295 220 295 240 290 258" fill="none" stroke="#111" stroke-width="2"/>
+  <path class="paint" data-name="Left Dome Finial" d="M262 195 L262 182 M258 178 A5 5 0 1 1 270 178 A5 5 0 1 1 258 178" fill="#ffffff" stroke="#111" stroke-width="2.5"/>
+  <path class="paint" data-name="Left Dome Base" d="M212 260 H318 V300 H212 Z" fill="#ffffff" stroke="#111" stroke-width="3"/>
+  <path d="M225 280 V295 M245 280 V295 M265 280 V295 M285 280 V295 M305 280 V295" stroke="#111" stroke-width="2"/>
+
+  <!-- Main Building - ONE smooth wall like inspo -->
+  <path class="paint" data-name="Main Wall" d="M205 300 C300 275 480 275 560 300 L560 380 Q350 395 205 380 Z" fill="#ffffff" stroke="#111" stroke-width="3"/>
+
+  <!-- Main Drum with windows -->
+  <path class="paint" data-name="Drum" d="M285 240 H485 V300 C420 285 350 285 285 300 Z" fill="#ffffff" stroke="#111" stroke-width="3"/>
+  <path d="M310 255 A12 12 0 0 1 334 255 V270 H310 Z M375 250 A15 15 0 0 1 405 250 V270 H375 Z M445 255 A12 12 0 0 1 469 255 V270 H445 Z" fill="#ffffff" stroke="#111" stroke-width="2"/>
+  <path d="M355 285 V305 M425 285 V305" stroke="#111" stroke-width="2"/>
+
+  <!-- MAIN DOME - Big round dome, curved path not circle -->
+  <path class="paint" data-name="Main Dome" d="M275 240 C275 145 340 115 390 115 C440 115 505 145 505 240 C450 220 330 220 275 240 Z" fill="#ffffff" stroke="#111" stroke-width="3.5" stroke-linejoin="round"/>
+  <path d="M310 135 C295 165 295 205 305 235 M470 135 C485 165 485 205 475 235" fill="none" stroke="#111" stroke-width="2"/>
+  
+  <!-- Main Finial + Crescent holder -->
+  <path class="paint" data-name="Finial" d="M385 115 V95 M375 95 A10 10 0 1 1 395 95 A10 10 0 1 1 375 95 M385 85 V70" fill="#ffffff" stroke="#111" stroke-width="2.5"/>
+
+  <!-- Right Small Dome -->
+  <path class="paint" data-name="Right Dome" d="M465 260 C465 210 495 195 515 195 C535 195 565 210 565 260 Z" fill="#ffffff" stroke="#111" stroke-width="3"/>
+  <path d="M490 200 C485 220 485 240 490 258 M515 195 C510 220 510 240 515 258 M540 200 C545 220 545 240 540 258" fill="none" stroke="#111" stroke-width="2"/>
+  <path class="paint" data-name="Right Dome Finial" d="M512 195 L512 182 M508 178 A5 5 0 1 1 520 178 A5 5 0 1 1 508 178" fill="#ffffff" stroke="#111" stroke-width="2.5"/>
+  <path class="paint" data-name="Right Dome Base" d="M462 260 H568 V300 H462 Z" fill="#ffffff" stroke="#111" stroke-width="3"/>
+  <path d="M475 280 V295 M495 280 V295 M515 280 V295 M535 280 V295 M555 280 V295" stroke="#111" stroke-width="2"/>
+
+  <!-- Side wings -->
+  <path class="paint" data-name="Left Wing" d="M120 320 H205 V380 H120 Z" fill="#ffffff" stroke="#111" stroke-width="3"/>
+  <path class="paint" data-name="Right Wing" d="M560 320 H660 V380 H560 Z" fill="#ffffff" stroke="#111" stroke-width="3"/>
+
+  <!-- Doors - arched like inspo -->
+  <path class="paint" data-name="Main Door" d="M360 380 V335 A30 30 0 0 1 420 335 V380 Z" fill="#ffffff" stroke="#111" stroke-width="3"/>
+  <path class="paint" data-name="Left Door" d="M225 380 V355 A12 12 0 0 1 249 355 V380 Z" fill="#ffffff" stroke="#111" stroke-width="2.5"/>
+  <path class="paint" data-name="Right Door" d="M530 380 V355 A12 12 0 0 1 554 355 V380 Z" fill="#ffffff" stroke="#111" stroke-width="2.5"/>
+  <path class="paint" data-name="Wing Door Left" d="M140 380 V350 A10 10 0 0 1 160 350 V380 Z" fill="#ffffff" stroke="#111" stroke-width="2"/>
+  <path class="paint" data-name="Wing Door Right" d="M615 380 V350 A10 10 0 0 1 635 350 V380 Z" fill="#ffffff" stroke="#111" stroke-width="2"/>
+
+  <!-- Trees - soft leaves like inspo -->
+  <path class="paint" data-name="Tree Left" d="M55 330 C35 300 70 285 85 310 C95 285 125 300 110 330 C100 350 95 365 95 380 L90 380 C90 365 85 350 85 345 C80 360 70 350 55 330 Z" fill="#ffffff" stroke="#111" stroke-width="2.5"/>
+  <path class="paint" data-name="Tree Right" d="M670 330 C650 300 685 285 700 310 C710 285 740 300 725 330 C715 350 710 365 710 380 L705 380 C705 365 700 350 700 345 C695 360 685 350 670 330 Z" fill="#ffffff" stroke="#111" stroke-width="2.5"/>
+  <path d="M95 345 L95 380 M705 345 L705 380" stroke="#111" stroke-width="2"/>
+
+  <text x="350" y="440" text-anchor="middle" font-size="16" fill="#a67c00">Colour with love • Bismillah • Alhamdulillah</text>
 </svg>
 </div>
-
-<p class="small" style="margin:4px 0;">🟤 Brown Camel &nbsp; 💛 Yellow Moon &nbsp; 💚 Green Masjid</p>
+<p class="small" style="margin:4px 0;"> Brown Camel &nbsp; Yellow Moon &nbsp;  Green Masjid</p>
 <div class="footer">Allah made all the beautiful colours!</div>
 </div><div class="page-num">9</div></section>
 
