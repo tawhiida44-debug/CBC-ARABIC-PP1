@@ -219,59 +219,57 @@ h3 { color:var(--teal); margin:12px 0 6px; }
 
 <svg viewBox="0 0 360 360" class="maze" style="background:#fff; border:3px solid #222; border-radius:14px; width:100%; height:auto; display:block;">
 
-  <!-- MAZE WALLS - thick black lines, corridors are white gaps -->
-  <g stroke="#111" stroke-width="8" stroke-linecap="square" fill="none">
-    <!-- horizontal walls -->
-    <path d="M0 90 H270" />
-    <path d="M90 180 H360" />
-    <path d="M0 270 H270" />
-    <!-- vertical walls -->
-    <path d="M90 90 V180" />
-    <path d="M270 90 V270" />
-    <path d="M180 180 V270" />
-  </g>
+<!-- MAZE - REAL CONNECTED PATH -->
+<div class="maze-stage" style="text-align:center; background:#fff; border:3px solid #111; border-radius:18px; padding:10px;">
+  <div style="display:flex; justify-content:space-between; align-items:center; padding:0 10px;">
+    <span style="font-size:28px;">🐪 <b>START</b></span>
+    <span style="font-size:13px; font-weight:700;">Help the camel find the Masjid!</span>
+    <span style="font-size:28px;">🕌 <b>END</b></span>
+  </div>
 
-  <!-- SOLUTION PATH - thick pink dashed, ON TOP of walls -->
-  <!-- Start at camel (top-left), end at masjid (bottom-right) -->
-  <path id="route" d="M45 45 H315 V135 H135 V225 H225 V315 H315"
-    fill="none" stroke="#E91E63" stroke-width="7"
-    stroke-linecap="round" stroke-linejoin="round"
-    stroke-dasharray="12 8" style="display:none" />
+<svg viewBox="0 0 360 380" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:360px; display:block; margin:auto; background:#fff;">
+  
+  <!-- Outer border - with ENTRANCE on left top and EXIT on right bottom -->
+  <!-- Top -->
+  <path d="M0 0 H360 V380 H360" fill="none" stroke="#111" stroke-width="3"/>
+  <!-- Actually draw border as 4 sides with gaps: -->
+  <path d="M0 0 H360" fill="none" stroke="#111" stroke-width="3"/>
+  <path d="M360 0 V380" fill="none" stroke="#111" stroke-width="3"/>
+  <path d="M360 380 H0" fill="none" stroke="#111" stroke-width="3"/>
+  <!-- Left side - GAP at top for entrance y=10 to 45 -->
+  <path d="M0 45 V380" fill="none" stroke="#111" stroke-width="3"/>
 
-  <!-- START - camel -->
-  <text x="30" y="55" font-size="28">🐪</text>
-  <!-- END - masjid -->
-  <text x="295" y="345" font-size="28">🕌</text>
+  <!-- WALL 1 - y=70 - gap on RIGHT, so you MUST go right -->
+  <path d="M0 70 H300" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/>
 
+  <!-- WALL 2 - y=130 - gap on LEFT, so you MUST go back left -->
+  <path d="M60 130 H360" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- WALL 3 - y=190 - gap on RIGHT -->
+  <path d="M0 190 H300" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- WALL 4 - y=250 - gap on LEFT -->
+  <path d="M60 250 H360" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- WALL 5 - y=310 - gap on RIGHT, then down to masjid -->
+  <path d="M0 310 H300" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- START camel -->
+  <text x="18" y="52" font-size="26">🐪</text>
+  <!-- END masjid -->
+  <text x="305" y="365" font-size="28">🕌</text>
+
+  <!-- SOLUTION - This is the REAL path, it NEVER crosses a wall -->
+  <!-- It goes: start -> right -> down through gap 1 -> left -> down gap 2 -> right -> down gap 3 -> left -> down gap 4 -> right -> down gap 5 -> masjid -->
+  <path id="mazeSolution" d="M30 37 H330 V100 H30 V160 H330 V220 H30 V280 H330 V340 H325"
+        fill="none" stroke="#ff2e88" stroke-width="3.5" stroke-dasharray="8 6" stroke-linecap="round" stroke-linejoin="round" style="display:none;"/>
+
+  <!-- Dead-end decoys - small walls to make it look like a real maze, but they DON'T block main path -->
+  <path d="M90 70 V110 M180 70 V110 M240 130 V170 M120 190 V230 M210 250 V290" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
 </svg>
 
-<button class="pill" onclick="document.getElementById('route').style.display='block'">Show solution</button>
+<button onclick="document.getElementById('mazeSolution').style.display = document.getElementById('mazeSolution').style.display==='none' ? 'block' : 'none'" style="margin-top:8px; padding:8px 14px; border-radius:999px; border:2px solid #111; background:#ffeef5; font-weight:800;">Show Solution ✨</button>
 </div>
-<div class="footer">A Masjid is a special place for Salah.</div>
-</section>
-<!-- 7 MATCHING -->
-<section class="page"><div class="content">
-<div class="top-label">Game 4 • Say It Out Loud</div>
-<h2>4. Match the Arabic Letter</h2>
-<p class="parent">Grown-up: Say the Arabic letter name. Help your child choose the matching animal word. Tap 🔊 to hear it.</p>
-<p>Match each letter with the correct word!</p>
-<div class="matchgrid" id="matchgrid"></div>
-<button onclick="checkMatches()">Check my matches</button>
-<p id="matchmsg">Look, say and match! 🌟</p>
-<div class="footer">Arabic letters help us read the Qur'an.</div>
-</div><div class="page-num">7</div></section>
-
-<!-- 8 TRACE -->
-<section class="page"><div class="content">
-<div class="top-label">Game 5 • Trace & Say</div>
-<h2>5. Trace & Color</h2>
-<p class="parent">Grown-up: Say the letter name. Let your child trace with finger, then pencil. Tap 🔊 to hear.</p>
-<p>Trace these Arabic letters!</p>
-<div id="traceList"></div>
-<h3>All 28 Arabic Letters</h3>
-<div class="alphabet arabic" dir="rtl"><span>ا</span><span>ب</span><span>ت</span><span>ث</span><span>ج</span><span>ح</span><span>خ</span><span>د</span><span>ذ</span><span>ر</span><span>ز</span><span>س</span><span>ش</span><span>ص</span><span>ض</span><span>ط</span><span>ظ</span><span>ع</span><span>غ</span><span>ف</span><span>ق</span><span>ك</span><span>ل</span><span>م</span><span>ن</span><span>ه</span><span>و</span><span>ي</span></div>
-<div class="footer">ما شاء الله — Masha Allah!</div>
-</div><div class="page-num">8</div></section>
 
 <!-- 9 COLOURING - NEW INTERACTIVE WITH PENCILS -->
 <section class="page"><div class="content">
