@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My First Islamic Arabic Activity Book</title>
+<title>pp1 CBC islamic Arabic Activity Book</title>
 <meta name="description" content="A printable Islamic Arabic activity book for kids 4-7: word search, crossword, maze, matching, tracing, colouring and dua.">
 
 <style>
@@ -134,7 +134,7 @@ h3 { color:var(--teal); margin:12px 0 6px; }
 <section class="page"><div class="content">
 <div class="top-label">For Parents & Teachers</div>
 <h2>How To Use This Book</h2>
-<p class="parent">Start with Bismillah. Do 1 page a day. Praise effort, not just correct answers. Let your child trace with finger first, then pencil. Use the 🔊 button to hear pronunciation.</p>
+<p class="parent">Start with Bismillah. Do 1 page a day. Praise effort, not just correct answers. Let your child trace with finger first, then pencil..</p>
 <h3>What's Inside?</h3>
 <div class="checklist">
 ✅ <b>1.</b> Bismillah & My Dua<br>
@@ -143,10 +143,10 @@ h3 { color:var(--teal); margin:12px 0 6px; }
 ✅ <b>4.</b> Help the Little Camel! - Maze<br>
 ✅ <b>5.</b> Match the Arabic Letter<br>
 ✅ <b>6.</b> Trace & Color<br>
-✅ <b>7.</b> My Colouring Page - with Pencils! ✏️<br>
+✅ <b>7.</b> My Colouring Page - with Pencils! <br>
 ✅ <b>8.</b> Answer Key + My Certificate
 </div>
-<div class="pill">⭐ My Progress</div>
+<div class="pill">My Progress</div>
 <div class="progress"><div id="progressBar"></div></div>
 <p id="progressText" class="small">0 of 5 games finished - You can do it!</p>
 <label class="small"><input type="checkbox" onchange="updateProgress()"> I said Bismillah before starting</label>
@@ -163,13 +163,13 @@ h3 { color:var(--teal); margin:12px 0 6px; }
 <div class="big-arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
 <h3>Bismillahir Rahmanir Raheem</h3>
 <p>In the name of Allah, the Most Kind, the Most Merciful.</p>
-<button class="secondary" onclick="speakText('Bismillahir Rahmanir Raheem')">🔊 Hear It</button>
+<button class="secondary" onclick="speakText('Bismillahir Rahmanir Raheem')"></button>
 <br><br>
 <div class="big-arabic" style="font-size:28pt;">رَبِّ زِدْنِي عِلْمًا</div>
 <h3>Rabbi Zidni Ilma</h3>
 <p>"My Lord, increase me in knowledge."</p>
-<button class="secondary" onclick="speakText('Rabbi Zidni Ilma')">🔊 Hear It</button>
-<div class="pill" style="margin-top:20px;">🤲 I can make dua before I learn!</div>
+<button class="secondary" onclick="speakText('Rabbi Zidni Ilma')"></button>
+<div class="pill" style="margin-top:20px;">  I can make dua before I learn!</div>
 <div class="footer">Allah loves when we ask Him for knowledge.</div>
 </div><div class="page-num">3</div></section>
 
@@ -181,7 +181,7 @@ h3 { color:var(--teal); margin:12px 0 6px; }
 <p>Find these eight special words!</p>
 <div class="wordgrid" id="wordgrid"></div>
 <div class="wordbank" id="wordbank"></div>
-<p id="wordmsg">You can do it, little learner! ⭐</p>
+<p id="wordmsg">You can do it, little learner! </p>
 <button onclick="showAnswers()">Show answers</button>
 <div class="footer">Bismillah — let's begin!</div>
 </div><div class="page-num">4</div></section>
@@ -208,17 +208,20 @@ h3 { color:var(--teal); margin:12px 0 6px; }
 <div class="footer">Allah loves when we learn good things.</div>
 </div><div class="page-num">5</div></section>
 
-<!-- 6 MAZE -->
+<!-- 6 MAZE - FIXED -->
 <section class="page"><div class="content">
 <div class="top-label">Game 3 • Trace With Finger</div>
 <h2>3. Help the Little Camel!</h2>
 <p class="parent">Grown-up: Let your child trace the path with a finger or crayon. Say "Masjid" together.</p>
 <p>Help the camel find its way to the Masjid!</p>
 <div class="maze">
-<svg viewBox="0 0 360 360"><rect x="3" y="3" width="354" height="354" rx="12" fill="#fffaf0" stroke="#d9b6a9" stroke-width="3"/>
-<path d="M3 90 H90 V3 M90 90 V180 H180 V90 H270 V3 M180 180 V270 H90 V357 M270 90 V180 H357 M270 180 V270 H180 M270 270 V357 M90 180 H3 M180 270 H270" fill="none" stroke="#7c2932" stroke-width="8"/>
-<path id="route" d="M25 45 H135 V135 H225 V225 H315 V315" fill="none" stroke="#4c8580" stroke-width="5" stroke-dasharray="9 8" style="display:none"/>
-<text x="15" y="45" font-size="28">🐪</text><text x="285" y="345" font-size="30">🕌</text></svg>
+<svg viewBox="0 0 360 360">
+<rect x="3" y="3" width="354" height="354" rx="12" fill="#fffaf0" stroke="#d9b6a9" stroke-width="3"/>
+<path d="M90 3 V90 H180 V180 H270 V270 H180 V357 M180 90 H270 V3 M90 180 H3 M270 180 H357 M90 270 H180 M270 270 V357 M90 90 H3" fill="none" stroke="#7c2932" stroke-width="7" stroke-linecap="round"/>
+<path id="route" d="M35 45 H135 V135 H225 V225 H315 V315" fill="none" stroke="#4c8580" stroke-width="5" stroke-dasharray="9 8" style="display:none"/>
+<text x="12" y="48" font-size="28">🐪</text>
+<text x="285" y="345" font-size="30">🕌</text>
+</svg>
 </div>
 <div class="pill">مَسْجِد — MASJID</div>
 <button onclick="document.getElementById('route').style.display='block'">Show solution</button>
