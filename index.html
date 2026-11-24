@@ -208,26 +208,47 @@ h3 { color:var(--teal); margin:12px 0 6px; }
 <div class="footer">Allah loves when we learn good things.</div>
 </div><div class="page-num">5</div></section>
 
-<!-- 6 MAZE - FIXED -->
-<section class="page"><div class="content">
-<div class="top-label">Game 3 • Trace With Finger</div>
-<h2>3. Help the Little Camel!</h2>
-<p class="parent">Grown-up: Let your child trace the path with a finger or crayon. Say "Masjid" together.</p>
-<p>Help the camel find its way to the Masjid!</p>
-<div class="maze">
-<svg viewBox="0 0 360 360">
-<rect x="3" y="3" width="354" height="354" rx="12" fill="#fffaf0" stroke="#d9b6a9" stroke-width="3"/>
-<path d="M90 3 V90 H180 V180 H270 V270 H180 V357 M180 90 H270 V3 M90 180 H3 M270 180 H357 M90 270 H180 M270 270 V357 M90 90 H3" fill="none" stroke="#7c2932" stroke-width="7" stroke-linecap="round"/>
-<path id="route" d="M35 45 H135 V135 H225 V225 H315 V315" fill="none" stroke="#4c8580" stroke-width="5" stroke-dasharray="9 8" style="display:none"/>
-<text x="12" y="48" font-size="28">🐪</text>
-<text x="285" y="345" font-size="30">🕌</text>
-</svg>
-</div>
-<div class="pill">مَسْجِد — MASJID</div>
-<button onclick="document.getElementById('route').style.display='block'">Show solution</button>
-<div class="footer">A Masjid is a special place for Salah.</div>
-</div><div class="page-num">6</div></section>
+<!-- 6 MAZE -->
+<section class="page page-maze" data-page="maze">
+<div class="top-label">Game 3 • Mazes</div>
+<div class="content">
+<h2>Help the Little Camel!</h2>
+<p>Help the camel grown-up: Let your child trace the path with a finger or crayon. Say "Masjid" together.</p>
 
+<div class="parent">🐪</div>
+
+<svg viewBox="0 0 360 360" class="maze" style="background:#fff; border:3px solid #222; border-radius:14px; width:100%; height:auto; display:block;">
+
+  <!-- MAZE WALLS - thick black lines, corridors are white gaps -->
+  <g stroke="#111" stroke-width="8" stroke-linecap="square" fill="none">
+    <!-- horizontal walls -->
+    <path d="M0 90 H270" />
+    <path d="M90 180 H360" />
+    <path d="M0 270 H270" />
+    <!-- vertical walls -->
+    <path d="M90 90 V180" />
+    <path d="M270 90 V270" />
+    <path d="M180 180 V270" />
+  </g>
+
+  <!-- SOLUTION PATH - thick pink dashed, ON TOP of walls -->
+  <!-- Start at camel (top-left), end at masjid (bottom-right) -->
+  <path id="route" d="M45 45 H315 V135 H135 V225 H225 V315 H315"
+    fill="none" stroke="#E91E63" stroke-width="7"
+    stroke-linecap="round" stroke-linejoin="round"
+    stroke-dasharray="12 8" style="display:none" />
+
+  <!-- START - camel -->
+  <text x="30" y="55" font-size="28">🐪</text>
+  <!-- END - masjid -->
+  <text x="295" y="345" font-size="28">🕌</text>
+
+</svg>
+
+<button class="pill" onclick="document.getElementById('route').style.display='block'">Show solution</button>
+</div>
+<div class="footer">A Masjid is a special place for Salah.</div>
+</section>
 <!-- 7 MATCHING -->
 <section class="page"><div class="content">
 <div class="top-label">Game 4 • Say It Out Loud</div>
