@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My First Islamic Arabic Activity Book</title>
+<meta name="description" content="A printable Islamic Arabic activity book for kids 4-7: word search, crossword, maze, matching, tracing, colouring and dua.">
+
+<style>
+:root {
+  --wine:#741a25;
+  --rose:#c98786;
+  --cream:#fffdf1;
+  --gold:#d6a84d;
+  --teal:#4c8580;
+  --light:#f5e2d7;
+}
+* { box-sizing:border-box; }
+body { margin:0; background:#eee8e2; font-family:Arial,sans-serif; color:#422b2b; }
+
+/* TOOLBAR */
+.toolbar { position:sticky; top:0; z-index:10; background:white; padding:12px; display:flex; justify-content:center; gap:10px; flex-wrap:wrap; box-shadow:0 2px 10px #0001; }
+button { background:var(--wine); color:white; border:0; border-radius:20px; padding:10px 16px; cursor:pointer; font-weight:bold; }
+button.secondary { background:var(--teal); }
+button.gold { background:var(--gold); color:#422b2b; }
+button.light { background:#f5e2d7; color:#422b2b; }
+
+/* PAGE */
+.page { width:210mm; min-height:297mm; height:297mm; margin:15px auto; position:relative; background:var(--cream) url("border.jpg") center/100% 100% no-repeat; page-break-after:always; box-shadow:0 4px 20px #0002; overflow:hidden; }
+.content { position:absolute; inset:12% 10% 9%; display:flex; flex-direction:column; align-items:center; text-align:center; }
+.page-num { position:absolute; bottom:18px; right:22px; font-size:10pt; color:#876c64; }
+.top-label { font-size:10pt; letter-spacing:2px; color:var(--teal); font-weight:bold; text-transform:uppercase; }
+
+h1 { font-size:32pt; color:var(--wine); margin:10px 0; line-height:1.1; }
+h2 { font-size:24pt; color:var(--wine); margin:6px 0 8px; }
+h3 { color:var(--teal); margin:12px 0 6px; }
+.arabic { font-family:"Amiri","Times New Roman",serif; direction:rtl; }
+.big-arabic { font-size:38pt; color:var(--wine); line-height:1.4; }
+.subtitle { font-size:15pt; color:#79504b; }
+.parent { font-size:11pt; color:#79504b; margin-bottom:12px; background:#fff9ef; border:1px dashed #d9b6a9; padding:10px; border-radius:12px; line-height:1.5; }
+.name { margin-top:auto; margin-bottom:10px; font-size:16pt; border-bottom:2px dotted var(--wine); padding-bottom:5px; min-width:80%; }
+.cover-art { font-size:40pt; margin:18px 0; line-height:1.6; }
+.pill { background:#f5e2d7; border-radius:20px; padding:9px 15px; margin:6px; display:inline-block; }
+.small { font-size:11pt; color:#79504b; line-height:1.6; }
+
+/* GAMES */
+.wordgrid { display:grid; grid-template-columns:repeat(10,1fr); width:92%; gap:4px; margin:14px auto; }
+.wordgrid button { padding:0; border:1px solid #d9b6a9; background:white; color:#422b2b; border-radius:5px; aspect-ratio:1; font-size:15pt; }
+.wordgrid button.selected { background:#f4c86e; }
+.wordgrid button.found { background:#b9d8c8; }
+.wordbank { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; }
+.wordbank span { background:#f5e8d9; padding:8px 10px; border-radius:10px; font-weight:bold; }
+
+.crossword-wrap { display:flex; gap:18px; justify-content:center; align-items:flex-start; width:95%; text-align:left; }
+.crossword { display:grid; grid-template-columns:repeat(6,36px); gap:3px; }
+.cell { width:36px; height:36px; border:1px solid #9d8276; background:white; position:relative; }
+.cell input { width:100%; height:100%; border:0; text-align:center; font-size:18pt; text-transform:uppercase; background:transparent; }
+.cell.block { background:var(--wine); }
+.cell small { position:absolute; top:1px; left:3px; font-size:7pt; color:#999; }
+.clues { line-height:1.9; font-size:12.5pt; }
+.clues b { color:var(--wine); }
+
+.maze { width:82%; margin:14px auto; }
+.maze svg { width:100%; }
+
+.matchgrid { display:grid; grid-template-columns:1fr 1fr; gap:10px; width:92%; margin:14px auto; }
+.matchcard { background:#fff9ef; border:2px dashed #c99c85; border-radius:12px; padding:12px 5px; font-size:16pt; }
+.matchcard select { display:block; margin:8px auto 0; padding:7px; max-width:95%; border-radius:8px; }
+
+.trace-row { display:flex; justify-content:space-between; align-items:center; width:92%; border-bottom:1px dashed #c99c85; padding:8px 10px; }
+.trace-letter { font-size:34pt; color:#c5aaa2; letter-spacing:8px; }
+.trace-btn { background:var(--teal); padding:6px 10px; font-size:11pt; border-radius:12px; }
+.alphabet { display:grid; grid-template-columns:repeat(7,1fr); gap:5px; width:95%; }
+.alphabet span { background:#f8e9dc; border-radius:7px; font-size:24pt; padding:5px; color:var(--wine); }
+.answer { text-align:left; line-height:1.7; width:92%; font-size:12pt; }
+.footer { margin-top:auto; color:#876c64; font-size:11pt; padding-top:10px; }
+.checklist { text-align:left; line-height:2; font-size:13pt; }
+.certificate { border:3px double var(--gold); padding:20px; width:92%; border-radius:14px; background:#fffdf1; }
+.stars { font-size:28pt; letter-spacing:8px; }
+.progress { width:92%; background:#eee; height:12px; border-radius:10px; overflow:hidden; margin:10px auto; }
+.progress div { height:100%; background:var(--gold); width:0%; transition:.4s; }
+
+/* === NEW: COLOURING PENCILS === */
+.pencil-box { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; width:96%; background:#fff9ef; border:2px dashed #e0c2b0; border-radius:16px; padding:10px 8px 14px; margin:6px 0; }
+.pencil { cursor:pointer; text-align:center; width:44px; transition:.15s; border:3px solid transparent; border-radius:12px; padding:2px 0; background:transparent; }
+.pencil.active { border-color:#422b2b; background:#fff; transform:scale(1.12); }
+.pencil .tip { font-size:22px; line-height:1; display:block; }
+.pencil .dot { width:18px; height:18px; border-radius:50%; margin:2px auto; border:1px solid #0002; }
+.pencil small { font-size:8.5pt; display:block; color:#79504b; line-height:1.1; }
+.colour-tools { display:flex; gap:6px; flex-wrap:wrap; justify-content:center; margin:6px 0; }
+.colour-tools button { padding:7px 12px; font-size:11pt; }
+.colour-stage { width:92%; background:#fff; border:2px solid #d9b6a9; border-radius:14px; padding:6px; margin:4px 0; }
+.colour-stage svg { width:100%; height:auto; display:block; }
+.paint { cursor:pointer; stroke:#7c5a50; stroke-width:1.6; stroke-linejoin:round; transition:.12s; }
+.paint:hover { opacity:.85; stroke-width:2.5; }
+.colour-selected { font-size:11pt; }
+
+@page { size:A4; margin:0; }
+@media print { body { background:white; } .toolbar { display:none; } .page { margin:0; box-shadow:none; -webkit-print-color-adjust:exact; print-color-adjust:exact; } .pencil-box, .colour-tools, .colour-selected { display:none !important; } }
+@media(max-width:750px) {
+  .page { width:100%; height:auto; min-height:141.4vw; }
+  h1 { font-size:7vw; } h2 { font-size:5.5vw; }
+  .wordgrid button { font-size:4vw; }
+  .crossword-wrap { flex-direction:column; align-items:center; }
+  .pencil { width:40px; }
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button onclick="window.print()">🖨 Print / Save PDF</button>
+  <button class="secondary" onclick="speakText('Bismillahir Rahmanir Raheem')">🔊 Hear Bismillah</button>
+  <button onclick="downloadColouringPNG()">⬇ Download My Colouring</button>
+  <button class="gold" onclick="resetGames()">↻ Reset Games</button>
+</div>
+
+<div id="book">
+
+<!-- 1 COVER -->
+<section class="page"><div class="content">
+<div class="pill">🌙 A LITTLE BOOK OF FAITH & FUN 🌙</div>
+<h1>My First Islamic<br>Arabic Activity Book</h1>
+<div class="big-arabic">كِتَابِي الأَوَّلُ لِلْعَرَبِيَّةِ</div>
+<p class="subtitle">Learn • Play • Color • Say Alhamdulillah!</p>
+<div class="cover-art">🕌　🌙　⭐<br>🐪　📖　🌼　🐝</div>
+<p>A happy little journey through<br>Arabic letters and beautiful Islam.</p>
+<div class="pill">For little learners ages 4–7</div>
+<div class="name">This book belongs to: __________________</div>
+<div class="small">Start with Bismillah on every page!</div>
+</div><div class="page-num">1</div></section>
+
+<!-- 2 HOW TO USE -->
+<section class="page"><div class="content">
+<div class="top-label">For Parents & Teachers</div>
+<h2>How To Use This Book</h2>
+<p class="parent">Start with Bismillah. Do 1 page a day. Praise effort, not just correct answers. Let your child trace with finger first, then pencil. Use the 🔊 button to hear pronunciation.</p>
+<h3>What's Inside?</h3>
+<div class="checklist">
+✅ <b>1.</b> Bismillah & My Dua<br>
+✅ <b>2.</b> Find the Words! - Word Search<br>
+✅ <b>3.</b> Mini Crossword<br>
+✅ <b>4.</b> Help the Little Camel! - Maze<br>
+✅ <b>5.</b> Match the Arabic Letter<br>
+✅ <b>6.</b> Trace & Color<br>
+✅ <b>7.</b> My Colouring Page - with Pencils! ✏️<br>
+✅ <b>8.</b> Answer Key + My Certificate
+</div>
+<div class="pill">⭐ My Progress</div>
+<div class="progress"><div id="progressBar"></div></div>
+<p id="progressText" class="small">0 of 5 games finished - You can do it!</p>
+<label class="small"><input type="checkbox" onchange="updateProgress()"> I said Bismillah before starting</label>
+<label class="small"><input type="checkbox" onchange="updateProgress()"> I finished my games</label>
+<label class="small"><input type="checkbox" onchange="updateProgress()"> I said Alhamdulillah at the end</label>
+<div class="footer">Tip: Print in colour for best results.</div>
+</div><div class="page-num">2</div></section>
+
+<!-- 3 DUA -->
+<section class="page"><div class="content">
+<div class="top-label">My First Dua</div>
+<h2>Before We Learn</h2>
+<p class="parent">Grown-up: Read this dua together. Let your child repeat after you.</p>
+<div class="big-arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+<h3>Bismillahir Rahmanir Raheem</h3>
+<p>In the name of Allah, the Most Kind, the Most Merciful.</p>
+<button class="secondary" onclick="speakText('Bismillahir Rahmanir Raheem')">🔊 Hear It</button>
+<br><br>
+<div class="big-arabic" style="font-size:28pt;">رَبِّ زِدْنِي عِلْمًا</div>
+<h3>Rabbi Zidni Ilma</h3>
+<p>"My Lord, increase me in knowledge."</p>
+<button class="secondary" onclick="speakText('Rabbi Zidni Ilma')">🔊 Hear It</button>
+<div class="pill" style="margin-top:20px;">🤲 I can make dua before I learn!</div>
+<div class="footer">Allah loves when we ask Him for knowledge.</div>
+</div><div class="page-num">3</div></section>
+
+<!-- 4 WORD SEARCH -->
+<section class="page"><div class="content">
+<div class="top-label">Game 1 • Easy</div>
+<h2>1. Find the Words!</h2>
+<p class="parent">Grown-up: Help your child find the words across →. Tap the letters in order.</p>
+<p>Find these eight special words!</p>
+<div class="wordgrid" id="wordgrid"></div>
+<div class="wordbank" id="wordbank"></div>
+<p id="wordmsg">You can do it, little learner! ⭐</p>
+<button onclick="showAnswers()">Show answers</button>
+<div class="footer">Bismillah — let's begin!</div>
+</div><div class="page-num">4</div></section>
+
+<!-- 5 CROSSWORD -->
+<section class="page"><div class="content">
+<div class="top-label">Game 2 • Listen & Write</div>
+<h2>2. Mini Crossword</h2>
+<p class="parent">Grown-up: Read each clue aloud. This is a Word Puzzle - write one letter in each box. Each row is one word.</p>
+<div class="crossword-wrap">
+<div class="crossword" id="crossword"></div>
+<div class="clues">
+<b>Across:</b><br>
+1. 🐝 Makes honey (3)<br>
+2. 🐈 Says meow (3)<br>
+3. 🐪 Has a hump (5)<br>
+4. 🕌 We pray here (6)<br>
+5. 📖 Holy Book (5)
+</div>
+</div>
+<br>
+<button onclick="checkCrossword()">Check answers</button>
+<p id="crossmsg">Keep trying!</p>
+<div class="footer">Allah loves when we learn good things.</div>
+</div><div class="page-num">5</div></section>
+
+<!-- 6 MAZE -->
+<section class="page"><div class="content">
+<div class="top-label">Game 3 • Trace With Finger</div>
+<h2>3. Help the Little Camel!</h2>
+<p class="parent">Grown-up: Let your child trace the path with a finger or crayon. Say "Masjid" together.</p>
+<p>Help the camel find its way to the Masjid!</p>
+<div class="maze">
+<svg viewBox="0 0 360 360"><rect x="3" y="3" width="354" height="354" rx="12" fill="#fffaf0" stroke="#d9b6a9" stroke-width="3"/>
+<path d="M3 90 H90 V3 M90 90 V180 H180 V90 H270 V3 M180 180 V270 H90 V357 M270 90 V180 H357 M270 180 V270 H180 M270 270 V357 M90 180 H3 M180 270 H270" fill="none" stroke="#7c2932" stroke-width="8"/>
+<path id="route" d="M25 45 H135 V135 H225 V225 H315 V315" fill="none" stroke="#4c8580" stroke-width="5" stroke-dasharray="9 8" style="display:none"/>
+<text x="15" y="45" font-size="28">🐪</text><text x="285" y="345" font-size="30">🕌</text></svg>
+</div>
+<div class="pill">مَسْجِد — MASJID</div>
+<button onclick="document.getElementById('route').style.display='block'">Show solution</button>
+<div class="footer">A Masjid is a special place for Salah.</div>
+</div><div class="page-num">6</div></section>
+
+<!-- 7 MATCHING -->
+<section class="page"><div class="content">
+<div class="top-label">Game 4 • Say It Out Loud</div>
+<h2>4. Match the Arabic Letter</h2>
+<p class="parent">Grown-up: Say the Arabic letter name. Help your child choose the matching animal word. Tap 🔊 to hear it.</p>
+<p>Match each letter with the correct word!</p>
+<div class="matchgrid" id="matchgrid"></div>
+<button onclick="checkMatches()">Check my matches</button>
+<p id="matchmsg">Look, say and match! 🌟</p>
+<div class="footer">Arabic letters help us read the Qur'an.</div>
+</div><div class="page-num">7</div></section>
+
+<!-- 8 TRACE -->
+<section class="page"><div class="content">
+<div class="top-label">Game 5 • Trace & Say</div>
+<h2>5. Trace & Color</h2>
+<p class="parent">Grown-up: Say the letter name. Let your child trace with finger, then pencil. Tap 🔊 to hear.</p>
+<p>Trace these Arabic letters!</p>
+<div id="traceList"></div>
+<h3>All 28 Arabic Letters</h3>
+<div class="alphabet arabic" dir="rtl"><span>ا</span><span>ب</span><span>ت</span><span>ث</span><span>ج</span><span>ح</span><span>خ</span><span>د</span><span>ذ</span><span>ر</span><span>ز</span><span>س</span><span>ش</span><span>ص</span><span>ض</span><span>ط</span><span>ظ</span><span>ع</span><span>غ</span><span>ف</span><span>ق</span><span>ك</span><span>ل</span><span>م</span><span>ن</span><span>ه</span><span>و</span><span>ي</span></div>
+<div class="footer">ما شاء الله — Masha Allah!</div>
+</div><div class="page-num">8</div></section>
+
+<!-- 9 COLOURING - NEW INTERACTIVE WITH PENCILS -->
+<section class="page"><div class="content">
+<div class="top-label">Just For Fun • Colour Me! ✏️</div>
+<h2>6. My Colouring Page</h2>
+<p class="parent" style="margin-bottom:6px;">Pick a pencil colour, then tap the picture to colour it! Tap Eraser to fix a mistake.</p>
+
+<!-- PENCIL PALETTE -->
+<div class="pencil-box" id="pencilBox"></div>
+<p class="colour-selected">✏️ Selected: <b id="colourSelectedName">Gold Pencil - Qamar / Moon</b> &nbsp;•&nbsp; <span id="colourSelectedTool">Paint</span></p>
+
+<div class="colour-tools">
+  <button onclick="setColourTool('paint')" id="btnColourPaint">🖌 Paint</button>
+  <button class="light" onclick="setColourTool('erase')" id="btnColourErase">🧽 Eraser</button>
+  <button class="light" onclick="undoColour()">↩ Undo</button>
+  <button class="light" onclick="clearColour()">↻ Clear</button>
+  <label style="font-size:11pt;">🎨 <input type="color" id="customPencil" value="#d6a84d" onchange="pickCustomPencil(this.value)"> My Colour</label>
+</div>
+
+<!-- COLOURING PICTURE -->
+<div class="colour-stage">
+<svg id="colourSvg" viewBox="0 0 700 440" xmlns="http://www.w3.org/2000/svg">
+  <rect class="paint" data-name="Sky" x="0" y="0" width="700" height="440" rx="10" fill="#fffdf1"/>
+  <path class="paint" data-name="Star" d="M120 60 l10 22 22 10 -22 10 -10 22 -10 -22 -22 -10 22 -10 Z" fill="#ffffff"/>
+  <path class="paint" data-name="Star" d="M560 55 l10 22 22 10 -22 10 -10 22 -10 -22 -22 -10 22 -10 Z" fill="#ffffff"/>
+  <path class="paint" data-name="Moon - Qamar" d="M350 40 A65 65 0 1 0 350 170 A52 52 0 1 1 350 40 Z" fill="#ffffff"/>
+  <ellipse class="paint" data-name="Cloud" cx="150" cy="210" rx="50" ry="18" fill="#ffffff"/>
+  <ellipse class="paint" data-name="Cloud" cx="560" cy="210" rx="50" ry="18" fill="#ffffff"/>
+  <rect class="paint" data-name="Ground" x="0" y="360" width="700" height="80" rx="10" fill="#E8DCC8"/>
+  <rect class="paint" data-name="Masjid Wall" x="180" y="250" width="340" height="110" rx="8" fill="#ffffff"/>
+  <path class="paint" data-name="Masjid Dome" d="M265 250 Q350 140 435 250 Z" fill="#ffffff"/>
+  <rect class="paint" data-name="Dome Top" x="344" y="125" width="12" height="30" fill="#ffffff"/>
+  <circle class="paint" data-name="Crescent" cx="350" cy="120" r="9" fill="#ffffff"/>
+  <rect class="paint" data-name="Minaret Left" x="150" y="185" width="30" height="175" rx="6" fill="#ffffff"/>
+  <path class="paint" data-name="Minaret Roof Left" d="M146 185 L165 145 L184 185 Z" fill="#ffffff"/>
+  <rect class="paint" data-name="Minaret Right" x="520" y="185" width="30" height="175" rx="6" fill="#ffffff"/>
+  <path class="paint" data-name="Minaret Roof Right" d="M516 185 L535 145 L554 185 Z" fill="#ffffff"/>
+  <path class="paint" data-name="Masjid Door" d="M315 360 L315 305 Q350 280 385 305 L385 360 Z" fill="#ffffff"/>
+  <rect class="paint" data-name="Window Left" x="210" y="295" width="50" height="45" rx="10" fill="#ffffff"/>
+  <rect class="paint" data-name="Window Right" x="440" y="295" width="50" height="45" rx="10" fill="#ffffff"/>
+  <circle class="paint" data-name="Flower" cx="90" cy="385" r="14" fill="#ffffff"/>
+  <circle class="paint" data-name="Flower" cx="620" cy="385" r="14" fill="#ffffff"/>
+  <ellipse class="paint" data-name="Camel Body" cx="530" cy="330" rx="52" ry="24" fill="#ffffff"/>
+  <ellipse class="paint" data-name="Camel Hump" cx="530" cy="305" rx="24" ry="15" fill="#ffffff"/>
+  <circle class="paint" data-name="Camel Head" cx="595" cy="290" r="18" fill="#ffffff"/>
+  <rect class="paint" data-name="Camel Neck" x="572" y="290" width="28" height="20" rx="7" fill="#ffffff"/>
+  <rect class="paint" data-name="Camel Leg 1" x="495" y="350" width="9" height="28" rx="4" fill="#ffffff"/>
+  <rect class="paint" data-name="Camel Leg 2" x="550" y="350" width="9" height="28" rx="4" fill="#ffffff"/>
+  <rect class="paint" data-name="Camel Blanket" x="500" y="318" width="48" height="18" rx="7" fill="#ffffff"/>
+  <ellipse class="paint" data-name="Bee Body" cx="120" cy="270" rx="20" ry="12" fill="#ffffff"/>
+  <ellipse class="paint" data-name="Bee Wing" cx="115" cy="252" rx="12" ry="7" fill="#ffffff"/>
+  <text x="350" y="425" text-anchor="middle" font-size="15" fill="#876c64">Colour with love • Bismillah • Alhamdulillah</text>
+</svg>
+</div>
+
+<p class="small" style="margin:4px 0;">🟤 Brown Camel &nbsp; 💛 Yellow Moon &nbsp; 💚 Green Masjid</p>
+<div class="footer">Allah made all the beautiful colours!</div>
+</div><div class="page-num">9</div></section>
+
+<!-- 10 ANSWER KEY + CERTIFICATE -->
+<section class="page"><div class="content">
+<div class="top-label">For Grown-Ups</div>
+<h2>Answer Key</h2>
+<p class="parent">Check answers together. Celebrate effort!</p>
+<div class="answer">
+<strong>1. Word Search:</strong> ALLAH Row 1, BEE Row 2, QURAN Row 3, CAT Row 4, MASJID Row 5, SALAAH Row 7, CAMEL Row 9, NABI Row 10<br>
+<strong>2. Word Puzzle:</strong> 1. BEE, 2. CAT, 3. CAMEL, 4. MASJID, 5. QURAN<br>
+<strong>3. Maze:</strong> Follow open corridor camel → Masjid<br>
+<strong>4. Matching:</strong> ا-ASAD, ب-BATTAH, ج-JAMAL, ن-NAHLAH, ف-FEEL, ق-QAMAR<br>
+<strong>5. Trace:</strong> ا Alif, ب Baa, ت Taa, ج Jeem, م Meem
+</div>
+<div class="certificate">
+<div class="stars">⭐ ⭐ ⭐</div>
+<h3 style="margin:4px;">Certificate of Achievement</h3>
+<p class="small">This star learner finished<br><b>My First Islamic Arabic Activity Book!</b></p>
+<p>Name: __________________</p>
+<p class="small">بارك الله فيك — May Allah bless you!</p>
+<div style="font-size:30pt;">🌙 🕌 ⭐</div>
+</div>
+<div class="footer">Keep learning, keep smiling, and say Alhamdulillah.</div>
+</div><div class="page-num">10</div></section>
+
+</div>
+
+<script>
+const words = ["ALLAH","QURAN","MASJID","SALAAH","CAMEL","BEE","CAT","NABI"];
+const rows = ["ALLAHZKPMX","TXQWERTBEE","ZQURANJHGF","PLMNVCATYU","MASJIDPOIU","XCVBNMASDF","ASALAAHJKL","QWERTYUIOP","CAMELZXCVB","MNBNABNABI"];
+let selected=[]; let found=[]; let finishedGames=new Set();
+
+function createWordSearch(){
+ const grid=document.getElementById("wordgrid"); grid.innerHTML="";
+ rows.forEach((row,r)=>{ [...row].forEach((letter,c)=>{
+  const b=document.createElement("button"); b.textContent=letter;
+  b.onclick=()=>selectLetter(b,r,c); b.dataset.position=r+"-"+c; grid.appendChild(b);
+ });});
+ const bank=document.getElementById("wordbank"); bank.innerHTML="";
+ words.forEach(word=>{ const s=document.createElement("span"); s.id="word-"+word; s.textContent=word; bank.appendChild(s); });
+}
+function selectLetter(button,r,c){
+ const pos=r+"-"+c; if(selected.includes(pos)) return;
+ selected.push(pos); button.classList.add("selected");
+ const word=selected.map(p=>{ const [rr,cc]=p.split("-").map(Number); return rows[rr][cc]; }).join("");
+ if(words.includes(word) && !found.includes(word)){
+  found.push(word);
+  selected.forEach(p=>document.querySelector('[data-position="'+p+'"]').classList.add("found"));
+  document.getElementById("word-"+word).style.textDecoration="line-through";
+  document.getElementById("wordmsg").textContent="Masha Allah! You found "+word+"!";
+  selected=[]; if(found.length===words.length){ markDone('wordsearch'); }
+ } else if(!words.some(w=>w.startsWith(word))){
+  selected.forEach(p=>{ const el=document.querySelector('[data-position="'+p+'"]'); if(el) el.classList.remove("selected"); });
+  selected=[];
+ }
+}
+function showAnswers(){
+ document.querySelectorAll(".wordgrid button").forEach(b=>b.classList.add("found"));
+ words.forEach(w=>document.getElementById("word-"+w).style.textDecoration="line-through");
+ markDone('wordsearch');
+}
+function createCrossword(){
+ const answers=["BEE","CAT","CAMEL","MASJID","QURAN"];
+ const grid=document.getElementById("crossword"); grid.innerHTML="";
+ answers.forEach((word,ri)=>{
+  [...word].forEach((letter,ci)=>{
+   const cell=document.createElement("div"); cell.className="cell";
+   if(ci===0){ const n=document.createElement("small"); n.textContent=ri+1; cell.appendChild(n); }
+   const input=document.createElement("input"); input.maxLength=1; input.dataset.answer=letter;
+   input.addEventListener("input",()=>{ const all=[...document.querySelectorAll("#crossword input")]; const idx=all.indexOf(input); if(input.value && all[idx+1]) all[idx+1].focus(); });
+   cell.appendChild(input); grid.appendChild(cell);
+  });
+  for(let i=word.length;i<6;i++){ const block=document.createElement("div"); block.className="cell block"; grid.appendChild(block); }
+ });
+}
+function checkCrossword(){
+ const inputs=[...document.querySelectorAll("#crossword input")];
+ let correctCount=inputs.filter(i=>i.value.toUpperCase()===i.dataset.answer).length;
+ const allCorrect=inputs.every(i=>i.value.toUpperCase()===i.dataset.answer);
+ document.getElementById("crossmsg").textContent=allCorrect?"Masha Allah! All correct!":correctCount+" correct! Keep trying, you can do it!";
+ if(allCorrect) markDone('crossword');
+}
+const matches=[["ا","🦁","ASAD","Asad"],["ب","🦆","BATTAH","Battah"],["ج","🐪","JAMAL","Jamal"],["ن","🐝","NAHLAH","Nahlah"],["ف","🐘","FEEL","Feel"],["ق","🌙","QAMAR","Qamar"]];
+function createMatches(){
+ const grid=document.getElementById("matchgrid"); grid.innerHTML="";
+ matches.forEach((m,i)=>{
+  const card=document.createElement("div"); card.className="matchcard";
+  card.innerHTML=`<span class="arabic" style="font-size:28pt;">${m[0]}</span> ${m[1]} <button class="trace-btn" onclick="speakText('${m[3]}')">🔊 ${m[3]}</button><select id="match${i}"><option value="">Choose word</option>${matches.map(x=>`<option value="${x[2]}">${x[2]}</option>`).join("")}</select>`;
+  grid.appendChild(card);
+ });
+}
+function checkMatches(){
+ let correct=0; matches.forEach((m,i)=>{ if(document.getElementById("match"+i).value===m[2]) correct++; });
+ document.getElementById("matchmsg").textContent=correct+" out of 6 correct! Masha Allah!";
+ if(correct===6) markDone('matching');
+}
+const traceLetters=[["ا","Alif"],["ب","Baa"],["ت","Taa"],["ج","Jeem"],["م","Meem"]];
+function createTrace(){
+ const el=document.getElementById("traceList"); if(!el) return; el.innerHTML="";
+ traceLetters.forEach(t=>{
+  el.innerHTML+=`<div class="trace-row"><span class="trace-letter">${t[0]}　${t[0]}　${t[0]}</span><span>${t[1]} <button class="trace-btn" onclick="speakText('${t[1]}')">🔊</button></span></div>`;
+ });
+}
+function speakText(text){
+ try{ const u=new SpeechSynthesisUtterance(text); u.lang='ar-SA'; u.rate=0.8; speechSynthesis.speak(u); }catch(e){}
+}
+function markDone(id){ finishedGames.add(id); updateProgress(); }
+function updateProgress(){
+ const pct=Math.min(100, Math.round((finishedGames.size/5)*100));
+ const bar=document.getElementById("progressBar"); if(bar) bar.style.width=pct+"%";
+ const txt=document.getElementById("progressText"); if(txt) txt.textContent=finishedGames.size+" of 5 games finished - "+(finishedGames.size===5?"Alhamdulillah! You did it!":"You can do it!");
+}
+function resetGames(){
+ selected=[]; found=[]; finishedGames.clear();
+ createWordSearch(); createCrossword(); createMatches(); createTrace(); updateProgress();
+ document.getElementById("wordmsg").textContent="You can do it, little learner!";
+ document.getElementById("matchmsg").textContent="Look, say and match! 🌟";
+}
+
+/* === COLOURING WITH PENCILS === */
+const pencils=[
+  {name:"Gold - Qamar", hex:"#FFD93B"},
+  {name:"Teal - Masjid", hex:"#4C8580"},
+  {name:"Wine", hex:"#741A25"},
+  {name:"Rose Pink", hex:"#F08A9B"},
+  {name:"Sky Blue", hex:"#7EC8E3"},
+  {name:"Leaf Green", hex:"#7CB662"},
+  {name:"Orange", hex:"#FF9F45"},
+  {name:"Purple", hex:"#9B7ED9"},
+  {name:"Brown - Camel", hex:"#A67C52"},
+  {name:"Black", hex:"#422B2B"},
+  {name:"Light Yellow", hex:"#FFF3A6"},
+  {name:"White", hex:"#FFFFFF"},
+];
+let pencilColor="#FFD93B";
+let pencilName="Gold Pencil - Qamar / Moon";
+let colourTool="paint";
+let colourHistory=[];
+
+function buildPencils(){
+  const box=document.getElementById("pencilBox"); if(!box) return; box.innerHTML="";
+  pencils.forEach((p,i)=>{
+    const b=document.createElement("button");
+    b.className="pencil"+(i===0?" active":"");
+    b.innerHTML=`<span class="tip"></span><span class="dot" style="background:${p.hex}"></span><small>${p.name}</small>`;
+    b.onclick=()=>selectPencil(p.hex,p.name,b);
+    box.appendChild(b);
+  });
+}
+function selectPencil(hex,name,el){
+  pencilColor=hex; pencilName=name;
+  document.querySelectorAll(".pencil").forEach(x=>x.classList.remove("active"));
+  if(el) el.classList.add("active");
+  document.getElementById("colourSelectedName").textContent=name+" Pencil";
+  setColourTool("paint");
+}
+function pickCustomPencil(hex){
+  pencilColor=hex; pencilName="My Custom Colour";
+  document.getElementById("colourSelectedName").textContent="My Custom Colour "+hex+" Pencil";
+  document.querySelectorAll(".pencil").forEach(x=>x.classList.remove("active"));
+}
+function setColourTool(t){
+  colourTool=t;
+  document.getElementById("colourSelectedTool").textContent=t==="paint"?"Paint":"Eraser";
+  document.getElementById("btnColourPaint").style.opacity=t==="paint"?"1":"0.6";
+  document.getElementById("btnColourErase").style.opacity=t==="erase"?"1":"0.6";
+}
+function initColouring(){
+  document.querySelectorAll("#colourSvg .paint").forEach(el=>{
+    el.addEventListener("click",()=>{
+      colourHistory.push({el, prev: el.getAttribute("fill")});
+      if(colourHistory.length>60) colourHistory.shift();
+      el.setAttribute("fill", colourTool==="erase" ? "#ffffff" : pencilColor);
+      if(colourTool==="paint") markDone('colouring');
+    });
+  });
+}
+function undoColour(){
+  const last=colourHistory.pop(); if(!last) return;
+  last.el.setAttribute("fill", last.prev);
+}
+function clearColour(){
+  if(!confirm("Clear all colours on this page?")) return;
+  colourHistory=[];
+  document.querySelectorAll("#colourSvg .paint").forEach(el=>el.setAttribute("fill","#ffffff"));
+  document.querySelector('[data-name="Ground"]').setAttribute("fill","#E8DCC8");
+  document.querySelector('[data-name="Sky"]').setAttribute("fill","#fffdf1");
+}
+function downloadColouringPNG(){
+  const svg=document.getElementById("colourSvg");
+  const clone=svg.cloneNode(true);
+  clone.setAttribute("xmlns","http://www.w3.org/2000/svg");
+  clone.setAttribute("width","1200"); clone.setAttribute("height","754");
+  const str=new XMLSerializer().serializeToString(clone);
+  const blob=new Blob([str],{type:"image/svg+xml;charset=utf-8"});
+  const url=URL.createObjectURL(blob);
+  const img=new Image();
+  img.onload=()=>{
+    const canvas=document.createElement("canvas"); canvas.width=1200; canvas.height=754;
+    const ctx=canvas.getContext("2d"); ctx.fillStyle="#fffdf1"; ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.drawImage(img,0,0,canvas.width,canvas.height);
+    URL.revokeObjectURL(url);
+    const a=document.createElement("a"); a.download="my-islamic-colouring.png"; a.href=canvas.toDataURL("image/png"); a.click();
+  };
+  img.src=url;
+}
+
+createWordSearch(); createCrossword(); createMatches(); createTrace(); buildPencils(); initColouring(); updateProgress();
+</script>
+</body>
+</html>
